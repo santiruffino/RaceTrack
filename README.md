@@ -105,4 +105,24 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Framer Motion](https://www.framer.com/motion/)
-- [Lucide Icons](https://lucide.dev/) 
+- [Lucide Icons](https://lucide.dev/)
+
+## Deployment
+
+### Deploying to Netlify
+
+1. **Build Settings**
+   - Build command: `npm run build` or `yarn build`
+   - Publish directory: `dist` (for Vite) or `build` (for Create React App)
+   - Base directory: `/` (root directory)
+
+2. **Environment Variables**
+   - Add any required environment variables in the Netlify dashboard under Site settings > Build & deploy > Environment
+
+3. **Deploy Steps**
+   - Connect your GitHub repository to Netlify
+   - Select the repository
+   - Use the build settings above
+   - Deploy!
+
+Note: If you're using Vite (which is common for modern React apps), the build output will be in the `dist` directory. If you're using Create React App, it will be in the `build` directory. 
