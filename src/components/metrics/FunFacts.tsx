@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import Card from '../ui/Card';
 
 interface FunFactsProps {
@@ -10,12 +11,14 @@ interface FunFactsProps {
 }
 
 const FunFacts: React.FC<FunFactsProps> = ({ totalDistance, totalElevation, totalTime }) => {
+  const { t } = useTranslation();
+
   return (
     <Card className="mb-8">
       <div className="p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
           <TrendingUp size={20} className="mr-2 text-purple-500" />
-          Fun Facts
+          {t('dashboard.funFacts.title')}
         </h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -25,11 +28,11 @@ const FunFacts: React.FC<FunFactsProps> = ({ totalDistance, totalElevation, tota
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.1 }}
           >
-            <p className="text-sm text-gray-600">Your total distance is equivalent to:</p>
+            <p className="text-sm text-gray-600">{t('dashboard.funFacts.soccerFields.description')}</p>
             <p className="text-lg font-semibold text-purple-700 mt-1">
-              {Math.round(totalDistance * 1000 / 105)} soccer fields
+              {t('dashboard.funFacts.soccerFields.value', { count: Math.round(totalDistance * 1000 / 105) })}
             </p>
-            <p className="text-xs text-gray-500 mt-1">(A soccer field is 105m long)</p>
+            <p className="text-xs text-gray-500 mt-1">{t('dashboard.funFacts.soccerFields.note')}</p>
           </motion.div>
 
           <motion.div 
@@ -38,11 +41,11 @@ const FunFacts: React.FC<FunFactsProps> = ({ totalDistance, totalElevation, tota
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.2 }}
           >
-            <p className="text-sm text-gray-600">You've climbed the equivalent of:</p>
+            <p className="text-sm text-gray-600">{t('dashboard.funFacts.mountEverest.description')}</p>
             <p className="text-lg font-semibold text-blue-700 mt-1">
-              {(totalElevation / 8848).toFixed(1)} Mount Everests
+              {t('dashboard.funFacts.mountEverest.value', { count: Number((totalElevation / 8848).toFixed(1)) })}
             </p>
-            <p className="text-xs text-gray-500 mt-1">(Mount Everest is 8,848m high)</p>
+            <p className="text-xs text-gray-500 mt-1">{t('dashboard.funFacts.mountEverest.note')}</p>
           </motion.div>
 
           <motion.div 
@@ -51,11 +54,11 @@ const FunFacts: React.FC<FunFactsProps> = ({ totalDistance, totalElevation, tota
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.3 }}
           >
-            <p className="text-sm text-gray-600">Your total running time could:</p>
+            <p className="text-sm text-gray-600">{t('dashboard.funFacts.movies.description')}</p>
             <p className="text-lg font-semibold text-green-700 mt-1">
-              {Math.round(totalTime / 120)} movies
+              {t('dashboard.funFacts.movies.value', { count: Math.round(totalTime / 120) })}
             </p>
-            <p className="text-xs text-gray-500 mt-1">(Average movie length: 2 hours)</p>
+            <p className="text-xs text-gray-500 mt-1">{t('dashboard.funFacts.movies.note')}</p>
           </motion.div>
         </div>
       </div>

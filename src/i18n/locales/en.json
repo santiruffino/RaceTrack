@@ -1,0 +1,195 @@
+{
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "rememberMe": "Remember me",
+    "orContinueWith": "Or continue with"
+  },
+  "landing": {
+    "hero": {
+      "title": "Track Your Races, Celebrate Your Progress",
+      "subtitle": "Log your races, monitor progress, and plan future events all in one place. Perfect for runners of all levels.",
+      "cta": "Get Started Now"
+    },
+    "features": {
+      "title": "Features designed for runners",
+      "subtitle": "Everything you need to track your running journey and plan for future success.",
+      "raceLogging": {
+        "title": "Race Logging",
+        "description": "Record all your races with detailed information about distance, time, and terrain."
+      },
+      "trackElevation": {
+        "title": "Track Elevation",
+        "description": "For trail races, track elevation gain to measure the difficulty of your routes."
+      },
+      "performanceAnalytics": {
+        "title": "Performance Analytics",
+        "description": "View your progress over time with detailed performance metrics."
+      },
+      "futureRacePlanning": {
+        "title": "Future Race Planning",
+        "description": "Plan and prepare for upcoming races with our event scheduling tools."
+      },
+      "progressDashboard": {
+        "title": "Progress Dashboard",
+        "description": "Visualize your running journey with customizable dashboard widgets."
+      },
+      "timeTracking": {
+        "title": "Time Tracking",
+        "description": "Record your race times and calculate your pace for different distances."
+      }
+    },
+    "stats": {
+      "activeUsers": "Active Users",
+      "racesTracked": "Races Tracked",
+      "kilometersRun": "Kilometers Run",
+      "happyRunners": "Happy Runners"
+    },
+    "cta": {
+      "title": "Ready to start tracking your races?",
+      "subtitle": "Join thousands of runners who are tracking their progress and achieving their goals.",
+      "button": "Get Started Now"
+    }
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "myRaces": "My Races",
+    "addRace": "Add Race"
+  },
+  "dashboard": {
+    "welcome": "Welcome back, {{name}}",
+    "overview": "Here's an overview of your racing journey",
+    "addRace": "Add New Race",
+    "metrics": {
+      "totalRaces": "Total Races",
+      "completedRaces": "Completed Races",
+      "upcomingRaces": "Upcoming Races",
+      "totalDistance": "Total Distance"
+    },
+    "funFacts": {
+      "title": "Fun Facts",
+      "soccerFields": {
+        "description": "Your total distance is equivalent to:",
+        "value": "{{count}} soccer fields",
+        "note": "(A soccer field is 105m long)"
+      },
+      "mountEverest": {
+        "description": "You've climbed the equivalent of:",
+        "value": "{{count}} Mount Everests",
+        "note": "(Mount Everest is 8,848m high)"
+      },
+      "movies": {
+        "description": "Your total running time could:",
+        "value": "{{count}} movies",
+        "note": "(Average movie length: 2 hours)"
+      }
+    },
+    "countdown": {
+      "title": "Next Race Countdown",
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds"
+    },
+    "stats": {
+      "timeStats": {
+        "title": "Time Stats",
+        "totalTime": "Total Time",
+        "fastestPace": "Fastest Race Pace"
+      },
+      "elevationStats": {
+        "title": "Elevation Stats",
+        "totalElevation": "Total Elevation Gain",
+        "highestRace": "Highest Elevation Race"
+      },
+      "terrainDistribution": {
+        "title": "Terrain Distribution",
+        "races": "races"
+      }
+    },
+    "recentRaces": {
+      "title": "Recent Races",
+      "viewAll": "View all",
+      "noRaces": "No completed races yet",
+      "addFirst": "Add your first race"
+    },
+    "upcomingRaces": {
+      "title": "Upcoming Races",
+      "viewAll": "View all",
+      "noRaces": "No upcoming races planned",
+      "planNext": "Plan your next race"
+    }
+  },
+  "footer": {
+    "description": "Track your races, monitor your progress, and plan your future competitions with RaceTrack.",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "legal": "Legal",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiePolicy": "Cookie Policy",
+    "copyright": "© {{year}} RaceTrack. All rights reserved.",
+    "madeWith": "Made with",
+    "forRunners": "for runners everywhere"
+  },
+  "common": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "add": "Add"
+  },
+  "races": {
+    "locationNotSpecified": "Location not specified",
+    "upcoming": "Upcoming",
+    "completed": "Completed",
+    "tbd": "TBD",
+    "notRecorded": "Not recorded",
+    "noElevationData": "No elevation data",
+    "position": "#{{general}} overall / #{{ageGroup}} AG",
+    "personalBest": "Personal Best!",
+    "terrainTypes": {
+      "road": "Road",
+      "trail": "Trail",
+      "cross": "Cross Country"
+    },
+    "editRace": "Edit Race",
+    "addNewRace": "Add New Race",
+    "newRaceDescription": "Record a past race or plan a future event",
+    "enterRaceName": "Enter Race Name",
+    "loadingSuggestions": "Loading Suggestions",
+    "noSuggestionsFound": "No suggestions found",
+    "date": "Race Date",
+    "distance": "Distance (km)",
+    "distancePlaceholder": "Enter distance in kilometers",
+    "terrainType": "Terrain Type",
+    "location": "Location",
+    "locationPlaceholder": "Enter race location",
+    "time": "Time (hh:mm:ss)",
+    "elevationGain": "Elevation Gain (m)",
+    "elevationGainPlaceholder": "Enter elevation in meters",
+    "overallPosition": "Overall Position",
+    "overallPositionPlaceholder": "Your overall position",
+    "ageGroupPosition": "Age Group Position",
+    "ageGroupPositionPlaceholder": "Your age group position",
+    "genderPosition": "Gender Position",
+    "genderPositionPlaceholder": "Your gender position",
+    "notes": "Notes",
+    "notesPlaceholder": "Add any notes about this race",
+    "errors": {
+      "nameRequired": "Race name is required",
+      "dateRequired": "Date is required",
+      "distanceRequired": "Distance is required",
+      "distancePositive": "Distance must be positive",
+      "terrainTypeRequired": "Terrain type is required",
+      "elevationPositive": "Elevation must be positive",
+      "positionPositive": "Position must be positive"
+    }
+  }
+} 

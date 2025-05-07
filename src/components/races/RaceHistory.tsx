@@ -3,12 +3,15 @@ import { motion } from 'framer-motion';
 import { Clock, Calendar, Medal } from 'lucide-react';
 import { Race } from '../../types';
 import { formatTime, formatPace } from '../../lib/utils';
+import { useTranslation } from 'react-i18next';
 
 interface RaceHistoryProps {
   races: Race[];
 }
 
 const RaceHistory: React.FC<RaceHistoryProps> = ({ races }) => {
+  const { t } = useTranslation();
+
   if (races.length === 0) {
     return null;
   }
@@ -21,7 +24,7 @@ const RaceHistory: React.FC<RaceHistoryProps> = ({ races }) => {
   
   return (
     <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">Race History</h3>
+      <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('dashboard.recentRaces.title')}</h3>
       
       <div className="space-y-4">
         {sortedRaces.map((race, index) => (
@@ -59,14 +62,14 @@ const RaceHistory: React.FC<RaceHistoryProps> = ({ races }) => {
               <div className="mt-2 flex items-center space-x-2">
                 <Medal size={16} className="text-yellow-500" />
                 <span className="text-sm text-gray-600">
-                  #{race.position.general} overall / #{race.position.ageGroup} AG
+                  {t('races.position', { general: race.position.general, ageGroup: race.position.ageGroup })}
                 </span>
               </div>
             )}
             
             {race.time === bestTime && (
               <div className="mt-2 text-sm text-purple-600 font-medium">
-                Personal Best! 🎉
+                {t('races.personalBest')} 🎉
               </div>
             )}
           </motion.div>

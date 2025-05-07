@@ -1,13 +1,14 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { Clock, MapPin, Mountain, Award, CalendarDays, MapPinned } from 'lucide-react';
-import { Race, TerrainType, Position } from '../../types';
+import { Clock, Mountain, Award, CalendarDays, MapPinned } from 'lucide-react';
+import { Race, TerrainType } from '../../types';
 import Button from '../ui/Button';
 import Input from '../ui/Input';
 import Select from '../ui/Select';
 import Card from '../ui/Card';
 import RaceNameAutocomplete from './RaceNameAutocomplete';
 import { upsertRaceName } from '../../lib/supabase';
+import { useTranslation } from 'react-i18next';
 
 interface RaceFormProps {
   initialData?: Partial<Race>;
@@ -22,6 +23,7 @@ const RaceForm: React.FC<RaceFormProps> = ({
   onCancel, 
   isLoading = false 
 }) => {
+  const { t } = useTranslation();
   const isEditing = !!initialData?.id;
   const isCompleted = initialData?.isCompleted ?? false;
   
@@ -76,7 +78,7 @@ const RaceForm: React.FC<RaceFormProps> = ({
     <Card className="w-full max-w-2xl mx-auto">
       <div className="p-6">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">
-          {isEditing ? 'Edit Race' : 'Add New Race'}
+          {isEditing ? t('races.editRace') : t('races.addNewRace')}
         </h2>
         
         <form onSubmit={handleSubmit(handleFormSubmit)}>
@@ -86,7 +88,7 @@ const RaceForm: React.FC<RaceFormProps> = ({
               <Controller
                 name="name"
                 control={control}
-                rules={{ required: 'Race name is required' }}
+                rules={{ required: t('races.errors.nameRequired') }}
                 render={({ field }) => (
                   <RaceNameAutocomplete
                     value={field.value}
@@ -101,27 +103,27 @@ const RaceForm: React.FC<RaceFormProps> = ({
             {/* Date */}
             <div>
               <Input
-                label="Race Date"
+                label={t('races.date')}
                 type="date"
                 error={errors.date?.message}
                 icon={<CalendarDays size={18} className="text-gray-400" />}
-                {...register('date', { required: 'Date is required' })}
+                {...register('date', { required: t('races.errors.dateRequired') })}
               />
             </div>
             
             {/* Distance */}
             <div>
               <Input
-                label="Distance (km)"
+                label={t('races.distance')}
                 type="number"
                 step="0.01"
                 min="0"
-                placeholder="Enter distance in kilometers"
+                placeholder={t('races.distancePlaceholder')}
                 error={errors.distance?.message}
                 {...register('distance', { 
-                  required: 'Distance is required',
+                  required: t('races.errors.distanceRequired'),
                   valueAsNumber: true,
-                  min: { value: 0, message: 'Distance must be positive' }
+                  min: { value: 0, message: t('races.errors.distancePositive') }
                 })}
               />
             </div>
@@ -131,14 +133,14 @@ const RaceForm: React.FC<RaceFormProps> = ({
               <Controller
                 control={control}
                 name="terrainType"
-                rules={{ required: 'Terrain type is required' }}
+                rules={{ required: t('races.errors.terrainTypeRequired') }}
                 render={({ field }) => (
                   <Select
-                    label="Terrain Type"
+                    label={t('races.terrainType')}
                     options={[
-                      { value: 'road', label: 'Road' },
-                      { value: 'trail', label: 'Trail' },
-                      { value: 'cross', label: 'Cross' }
+                      { value: 'road', label: t('races.terrainTypes.road') },
+                      { value: 'trail', label: t('races.terrainTypes.trail') },
+                      { value: 'cross', label: t('races.terrainTypes.cross') }
                     ]}
                     error={errors.terrainType?.message}
                     {...field}
@@ -150,8 +152,8 @@ const RaceForm: React.FC<RaceFormProps> = ({
             {/* Location */}
             <div>
               <Input
-                label="Location"
-                placeholder="Enter race location"
+                label={t('races.location')}
+                placeholder={t('races.locationPlaceholder')}
                 error={errors.location?.message}
                 icon={<MapPinned size={18} className="text-gray-400" />}
                 {...register('location')}
@@ -168,7 +170,7 @@ const RaceForm: React.FC<RaceFormProps> = ({
                   {...register('isCompleted')}
                 />
                 <label htmlFor="isCompleted" className="ml-2 text-sm font-medium text-gray-700">
-                  Race completed
+                  {t('races.completed')}
                 </label>
               </div>
             </div>
@@ -179,12 +181,12 @@ const RaceForm: React.FC<RaceFormProps> = ({
                 {/* Time */}
                 <div>
                   <Input
-                    label="Time (hh:mm:ss)"
+                    label={t('races.time')}
                     placeholder="00:00:00"
                     error={errors.time?.message}
                     icon={<Clock size={18} className="text-gray-400" />}
                     defaultValue={initialData?.time ? secondsToTime(initialData.time) : ''}
-                    {...register('time')}
+                    {...register('time', { required: false })}
                   />
                 </div>
                 
@@ -192,14 +194,14 @@ const RaceForm: React.FC<RaceFormProps> = ({
                 {watchTerrainType === 'trail' && (
                   <div>
                     <Input
-                      label="Elevation Gain (m)"
+                      label={t('races.elevationGain')}
                       type="number"
-                      placeholder="Enter elevation in meters"
+                      placeholder={t('races.elevationGainPlaceholder')}
                       error={errors.elevationGain?.message}
                       icon={<Mountain size={18} className="text-gray-400" />}
                       {...register('elevationGain', { 
                         valueAsNumber: true,
-                        min: { value: 0, message: 'Elevation must be positive' }
+                        min: { value: 0, message: t('races.errors.elevationPositive') }
                       })}
                     />
                   </div>
@@ -208,40 +210,40 @@ const RaceForm: React.FC<RaceFormProps> = ({
                 {/* Position */}
                 <div>
                   <Input
-                    label="Overall Position"
+                    label={t('races.overallPosition')}
                     type="number"
-                    placeholder="Your overall position"
+                    placeholder={t('races.overallPositionPlaceholder')}
                     error={errors.position?.message?.toString()}
                     icon={<Award size={18} className="text-gray-400" />}
                     {...register('position.general', { 
                       valueAsNumber: true,
-                      min: { value: 0, message: 'Position must be positive' }
+                      min: { value: 0, message: t('races.errors.positionPositive') }
                     })}
                   />
                 </div>
                 
                 <div>
                   <Input
-                    label="Age Group Position"
+                    label={t('races.ageGroupPosition')}
                     type="number"
-                    placeholder="Your age group position"
+                    placeholder={t('races.ageGroupPositionPlaceholder')}
                     error={errors.position?.message?.toString()}
                     {...register('position.ageGroup', { 
                       valueAsNumber: true,
-                      min: { value: 0, message: 'Position must be positive' }
+                      min: { value: 0, message: t('races.errors.positionPositive') }
                     })}
                   />
                 </div>
                 
                 <div>
                   <Input
-                    label="Gender Position"
+                    label={t('races.genderPosition')}
                     type="number"
-                    placeholder="Your gender position"
+                    placeholder={t('races.genderPositionPlaceholder')}
                     error={errors.position?.message?.toString()}
                     {...register('position.gender', { 
                       valueAsNumber: true,
-                      min: { value: 0, message: 'Position must be positive' }
+                      min: { value: 0, message: t('races.errors.positionPositive') }
                     })}
                   />
                 </div>
@@ -250,31 +252,30 @@ const RaceForm: React.FC<RaceFormProps> = ({
             
             {/* Notes */}
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Notes
-              </label>
-              <textarea
-                className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200"
-                rows={3}
-                placeholder="Add any notes about this race"
+              <Input
+                label={t('races.notes')}
+                placeholder={t('races.notesPlaceholder')}
+                error={errors.notes?.message}
                 {...register('notes')}
-              ></textarea>
+              />
             </div>
           </div>
           
-          <div className="mt-8 flex justify-end space-x-4">
+          <div className="mt-6 flex justify-end space-x-3">
             <Button
               type="button"
-              variant="outline"
+              variant="ghost"
               onClick={onCancel}
+              disabled={isLoading}
             >
-              Cancel
+              {t('common.cancel')}
             </Button>
             <Button
               type="submit"
+              variant="primary"
               loading={isLoading}
             >
-              {isEditing ? 'Update Race' : 'Add Race'}
+              {isEditing ? t('common.save') : t('common.add')}
             </Button>
           </div>
         </form>

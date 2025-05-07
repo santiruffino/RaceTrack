@@ -1,0 +1,195 @@
+{
+  "auth": {
+    "login": "Iniciar Sesión",
+    "signup": "Registrarse",
+    "logout": "Cerrar Sesión",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "noAccount": "¿No tienes una cuenta?",
+    "hasAccount": "¿Ya tienes una cuenta?",
+    "rememberMe": "Remember me",
+    "orContinueWith": "Or continue with"
+  },
+  "landing": {
+    "hero": {
+      "title": "Registra tus Carreras, Celebra tu Progreso",
+      "subtitle": "Registra tus carreras, monitorea tu progreso y planifica eventos futuros en un solo lugar. Perfecto para corredores de todos los niveles.",
+      "cta": "Comenzar Ahora"
+    },
+    "features": {
+      "title": "Características diseñadas para corredores",
+      "subtitle": "Todo lo que necesitas para seguir tu viaje de running y planificar el éxito futuro.",
+      "raceLogging": {
+        "title": "Registro de Carreras",
+        "description": "Registra todas tus carreras con información detallada sobre distancia, tiempo y terreno."
+      },
+      "trackElevation": {
+        "title": "Seguimiento de Elevación",
+        "description": "Para carreras de trail, registra el desnivel para medir la dificultad de tus rutas."
+      },
+      "performanceAnalytics": {
+        "title": "Análisis de Rendimiento",
+        "description": "Visualiza tu progreso a lo largo del tiempo con métricas detalladas de rendimiento."
+      },
+      "futureRacePlanning": {
+        "title": "Planificación de Carreras Futuras",
+        "description": "Planifica y prepárate para próximas carreras con nuestras herramientas de programación de eventos."
+      },
+      "progressDashboard": {
+        "title": "Panel de Progreso",
+        "description": "Visualiza tu viaje de running con widgets personalizables en el panel."
+      },
+      "timeTracking": {
+        "title": "Seguimiento de Tiempo",
+        "description": "Registra tus tiempos de carrera y calcula tu ritmo para diferentes distancias."
+      }
+    },
+    "stats": {
+      "activeUsers": "Usuarios Activos",
+      "racesTracked": "Carreras Registradas",
+      "kilometersRun": "Kilómetros Corridos",
+      "happyRunners": "Corredores Satisfechos"
+    },
+    "cta": {
+      "title": "¿Listo para comenzar a registrar tus carreras?",
+      "subtitle": "Únete a miles de corredores que están registrando su progreso y alcanzando sus metas.",
+      "button": "Comenzar Ahora"
+    }
+  },
+  "navigation": {
+    "dashboard": "Tablero",
+    "myRaces": "Mis Carreras",
+    "addRace": "Añadir Carrera"
+  },
+  "dashboard": {
+    "welcome": "Bienvenido de nuevo, {{name}}",
+    "overview": "Aquí tienes un resumen de tu trayectoria en carreras",
+    "addRace": "Añadir Nueva Carrera",
+    "metrics": {
+      "totalRaces": "Total de Carreras",
+      "completedRaces": "Carreras Completadas",
+      "upcomingRaces": "Próximas Carreras",
+      "totalDistance": "Distancia Total"
+    },
+    "funFacts": {
+      "title": "Datos Curiosos",
+      "soccerFields": {
+        "description": "Tu distancia total equivale a:",
+        "value": "{{count}} campos de fútbol",
+        "note": "(Un campo de fútbol mide 105m de largo)"
+      },
+      "mountEverest": {
+        "description": "Has subido el equivalente a:",
+        "value": "{{count}} Monte Everests",
+        "note": "(El Monte Everest tiene 8.848m de altura)"
+      },
+      "movies": {
+        "description": "Tu tiempo total de carrera equivale a:",
+        "value": "{{count}} películas",
+        "note": "(Duración media de una película: 2 horas)"
+      }
+    },
+    "countdown": {
+      "title": "Cuenta Regresiva para la Próxima Carrera",
+      "days": "Días",
+      "hours": "Horas",
+      "minutes": "Minutos",
+      "seconds": "Segundos"
+    },
+    "stats": {
+      "timeStats": {
+        "title": "Estadísticas de Tiempo",
+        "totalTime": "Tiempo Total",
+        "fastestPace": "Ritmo Más Rápido"
+      },
+      "elevationStats": {
+        "title": "Estadísticas de Elevación",
+        "totalElevation": "Elevación Total Ganada",
+        "highestRace": "Carrera con Mayor Elevación"
+      },
+      "terrainDistribution": {
+        "title": "Distribución de Terreno",
+        "races": "carreras"
+      }
+    },
+    "recentRaces": {
+      "title": "Carreras Recientes",
+      "viewAll": "Ver todas",
+      "noRaces": "Aún no hay carreras completadas",
+      "addFirst": "Añade tu primera carrera"
+    },
+    "upcomingRaces": {
+      "title": "Próximas Carreras",
+      "viewAll": "Ver todas",
+      "noRaces": "No hay carreras programadas",
+      "planNext": "Planifica tu próxima carrera"
+    }
+  },
+  "footer": {
+    "description": "Registra tus carreras, monitorea tu progreso y planifica tus futuras competencias con RaceTrack.",
+    "quickLinks": "Enlaces Rápidos",
+    "home": "Inicio",
+    "legal": "Legal",
+    "privacyPolicy": "Política de Privacidad",
+    "termsOfService": "Términos de Servicio",
+    "cookiePolicy": "Política de Cookies",
+    "copyright": "© {{year}} RaceTrack. Todos los derechos reservados.",
+    "madeWith": "Hecho con",
+    "forRunners": "para corredores de todo el mundo"
+  },
+  "common": {
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "add": "Agregar"
+  },
+  "races": {
+    "locationNotSpecified": "Ubicación no especificada",
+    "upcoming": "Próxima",
+    "completed": "Completada",
+    "tbd": "Por determinar",
+    "notRecorded": "No registrado",
+    "noElevationData": "Sin datos de elevación",
+    "position": "#{{general}} general / #{{ageGroup}} CG",
+    "personalBest": "¡Mejor tiempo personal!",
+    "terrainTypes": {
+      "road": "Calle",
+      "trail": "Montaña",
+      "cross": "Campo traviesa"
+    },
+    "editRace": "Editar Carrera",
+    "addNewRace": "Agregar Nueva Carrera",
+    "newRaceDescription": "Guardar una carrera pasada o planifica una carrera a futuro",
+    "enterRaceName": "Ingresar nombre de la carrera",
+    "loadingSuggestions": "Cargando Sugerencias...",
+    "noSuggestionsFound": "No hay sugerencias",
+    "date": "Fecha de la Carrera",
+    "distance": "Distancia (km)",
+    "distancePlaceholder": "Ingresa la distancia en kilómetros",
+    "terrainType": "Tipo de Terreno",
+    "location": "Ubicación",
+    "locationPlaceholder": "Ingresa la ubicación de la carrera",
+    "time": "Tiempo (hh:mm:ss)",
+    "elevationGain": "Ganancia de Elevación (m)",
+    "elevationGainPlaceholder": "Ingresa la elevación en metros",
+    "overallPosition": "Posición General",
+    "overallPositionPlaceholder": "Tu posición general",
+    "ageGroupPosition": "Posición en Grupo de Edad",
+    "ageGroupPositionPlaceholder": "Tu posición en el grupo de edad",
+    "genderPosition": "Posición por Género",
+    "genderPositionPlaceholder": "Tu posición por género",
+    "notes": "Notas",
+    "notesPlaceholder": "Agrega notas sobre esta carrera",
+    "errors": {
+      "nameRequired": "El nombre de la carrera es requerido",
+      "dateRequired": "La fecha es requerida",
+      "distanceRequired": "La distancia es requerida",
+      "distancePositive": "La distancia debe ser positiva",
+      "terrainTypeRequired": "El tipo de terreno es requerido",
+      "elevationPositive": "La elevación debe ser positiva",
+      "positionPositive": "La posición debe ser positiva"
+    }
+  }
+}

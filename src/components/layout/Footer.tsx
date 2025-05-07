@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Timer, Heart, Twitter, Instagram, Facebook } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,7 +16,7 @@ const Footer: React.FC = () => {
               <span className="ml-2 text-xl font-bold text-white">RaceTrack</span>
             </Link>
             <p className="mt-4 text-gray-400 max-w-xs">
-              Track your races, monitor your progress, and plan your future competitions with RaceTrack.
+              {t('footer.description')}
             </p>
             <div className="flex mt-6 space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -29,42 +32,42 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-gray-400 hover:text-white transition-colors">
-                  Home
+                  {t('footer.home')}
                 </Link>
               </li>
               <li>
                 <Link to="/dashboard" className="text-gray-400 hover:text-white transition-colors">
-                  Dashboard
+                  {t('navigation.dashboard')}
                 </Link>
               </li>
               <li>
                 <Link to="/races" className="text-gray-400 hover:text-white transition-colors">
-                  My Races
+                  {t('navigation.myRaces')}
                 </Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Legal</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.legal')}</h3>
             <ul className="space-y-2">
               <li>
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Privacy Policy
+                  {t('footer.privacyPolicy')}
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Terms of Service
+                  {t('footer.termsOfService')}
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Cookie Policy
+                  {t('footer.cookiePolicy')}
                 </a>
               </li>
             </ul>
@@ -73,10 +76,10 @@ const Footer: React.FC = () => {
         
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row md:justify-between items-center">
           <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} RaceTrack. All rights reserved.
+            {t('footer.copyright', { year: new Date().getFullYear() })}
           </p>
           <p className="text-gray-400 mt-4 md:mt-0 flex items-center">
-            Made with <Heart size={16} className="mx-1 text-red-500" /> for runners everywhere
+            {t('footer.madeWith')} <Heart size={16} className="mx-1 text-red-500" /> {t('footer.forRunners')}
           </p>
         </div>
       </div>

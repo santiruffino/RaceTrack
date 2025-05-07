@@ -4,12 +4,15 @@ import { motion } from 'framer-motion';
 import { Timer, Menu, X, User, LogOut } from 'lucide-react';
 import useAuthStore from '../../store/authStore';
 import Button from '../ui/Button';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../ui/LanguageSwitcher';
 
 const Navbar: React.FC = () => {
   const { isAuthenticated, user, logout } = useAuthStore();
   const navigate = useNavigate();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   const handleLogout = () => {
     logout();
@@ -21,8 +24,8 @@ const Navbar: React.FC = () => {
   };
 
   const navLinks = [
-    { path: '/dashboard', label: 'Dashboard' },
-    { path: '/races', label: 'My Races' },
+    { path: '/dashboard', label: t('navigation.dashboard') },
+    { path: '/races', label: t('navigation.myRaces') },
   ];
 
   return (
@@ -38,6 +41,7 @@ const Navbar: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4">
+            <LanguageSwitcher />
             {isAuthenticated ? (
               <>
                 {navLinks.map((link) => (
@@ -72,7 +76,7 @@ const Navbar: React.FC = () => {
                       className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"
                     >
                       <LogOut size={16} className="mr-2" />
-                      Sign out
+                      {t('auth.logout')}
                     </button>
                   </div>
                 </div>
@@ -83,11 +87,11 @@ const Navbar: React.FC = () => {
                   to="/login"
                   className="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Login
+                  {t('auth.login')}
                 </Link>
                 <Link to="/signup">
                   <Button variant="primary" size="sm">
-                    Sign Up
+                    {t('auth.signup')}
                   </Button>
                 </Link>
               </>
@@ -115,6 +119,7 @@ const Navbar: React.FC = () => {
           className="md:hidden"
         >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white">
+            <LanguageSwitcher />
             {isAuthenticated ? (
               <>
                 {navLinks.map((link) => (
@@ -149,7 +154,7 @@ const Navbar: React.FC = () => {
                       }}
                       className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50"
                     >
-                      Sign out
+                      {t('auth.logout')}
                     </button>
                   </div>
                 </div>
@@ -161,14 +166,14 @@ const Navbar: React.FC = () => {
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Login
+                  {t('auth.login')}
                 </Link>
                 <Link
                   to="/signup"
                   className="block px-3 py-2 rounded-md text-base font-medium text-purple-600 bg-purple-50 hover:bg-purple-100"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Sign Up
+                  {t('auth.signup')}
                 </Link>
               </>
             )}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search } from 'lucide-react';
 import { searchRaceNames } from '../../lib/supabase';
+import { useTranslation } from 'react-i18next';
 
 interface RaceNameAutocompleteProps {
   value: string;
@@ -19,6 +20,7 @@ const RaceNameAutocomplete: React.FC<RaceNameAutocompleteProps> = ({
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchSuggestions = async () => {
@@ -56,7 +58,7 @@ const RaceNameAutocomplete: React.FC<RaceNameAutocompleteProps> = ({
             focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent
             transition-colors duration-200
           `}
-          placeholder="Enter race name"
+          placeholder={t('races.enterRaceName')}
         />
       </div>
 
@@ -69,7 +71,7 @@ const RaceNameAutocomplete: React.FC<RaceNameAutocompleteProps> = ({
             className="absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg border border-gray-200"
           >
             {isLoading ? (
-              <div className="p-2 text-sm text-gray-500">Loading suggestions...</div>
+              <div className="p-2 text-sm text-gray-500">{t('races.loadingSuggestions')}</div>
             ) : suggestions.length > 0 ? (
               <ul>
                 {suggestions.map((name, index) => (
@@ -86,7 +88,7 @@ const RaceNameAutocomplete: React.FC<RaceNameAutocompleteProps> = ({
                 ))}
               </ul>
             ) : (
-              <div className="p-2 text-sm text-gray-500">No suggestions found</div>
+              <div className="p-2 text-sm text-gray-500">{t('races.noSuggestionsFound')}</div>
             )}
           </motion.div>
         )}

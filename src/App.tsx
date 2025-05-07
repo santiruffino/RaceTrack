@@ -1,28 +1,10 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import useAuthStore from './store/authStore';
+import './i18n/config';
+import AppRoutes from './routes';
 
-// Pages
-import Landing from './pages/landing/Landing';
-import Login from './pages/auth/Login';
-import Signup from './pages/auth/Signup';
-import Dashboard from './pages/dashboard/Dashboard';
-import Races from './pages/races/Races';
-import NewRace from './pages/races/NewRace';
-import EditRace from './pages/races/EditRace';
-
-// Protected route component
-const ProtectedRoute: React.FC<{ element: React.ReactNode }> = ({ element }) => {
-  const { isAuthenticated, isLoading } = useAuthStore();
-  
-  if (isLoading) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
-  }
-  
-  return isAuthenticated ? <>{element}</> : <Navigate to="/login" />;
-};
-
-function App() {
+const App: React.FC = () => {
   const { checkAuth } = useAuthStore();
   
   useEffect(() => {
@@ -31,24 +13,9 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        {/* Public routes */}
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        
-        {/* Protected routes */}
-        <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
-        <Route path="/races" element={<ProtectedRoute element={<Races />} />} />
-        <Route path="/races/upcoming" element={<ProtectedRoute element={<Races />} />} />
-        <Route path="/races/new" element={<ProtectedRoute element={<NewRace />} />} />
-        <Route path="/races/edit/:id" element={<ProtectedRoute element={<EditRace />} />} />
-        
-        {/* Fallback route */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+      <AppRoutes />
     </Router>
   );
-}
+};
 
 export default App;

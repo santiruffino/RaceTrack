@@ -1,10 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Clock, MapPin, TrendingUp, Medal, Edit, Trash2 } from 'lucide-react';
 import { Race, TerrainType } from '../../types';
 import Card from '../ui/Card';
-import { formatTime, getTerrainColor, getTerrainIcon } from '../../lib/utils';
+import { formatTime, getTerrainColor } from '../../lib/utils';
 import Button from '../ui/Button';
+import { useTranslation } from 'react-i18next';
 
 interface RaceCardProps {
   race: Race;
@@ -19,6 +19,7 @@ const terrainIcons: Record<TerrainType, React.ReactNode> = {
 };
 
 const RaceCard: React.FC<RaceCardProps> = ({ race, onEdit, onDelete }) => {
+  const { t } = useTranslation();
   const isUpcoming = !race.isCompleted;
   const formattedDate = new Date(race.date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -37,7 +38,7 @@ const RaceCard: React.FC<RaceCardProps> = ({ race, onEdit, onDelete }) => {
             <h3 className="text-lg font-bold text-gray-900">{race.name}</h3>
             <div className="flex items-center mt-1 text-sm text-gray-500">
               <MapPin size={14} className="mr-1" />
-              <span>{race.location || 'Location not specified'}</span>
+              <span>{race.location || t('races.locationNotSpecified')}</span>
             </div>
           </div>
           <div className={`px-2 py-1 rounded text-xs font-medium ${
@@ -45,7 +46,7 @@ const RaceCard: React.FC<RaceCardProps> = ({ race, onEdit, onDelete }) => {
               ? 'bg-blue-100 text-blue-800' 
               : 'bg-green-100 text-green-800'
           }`}>
-            {isUpcoming ? 'Upcoming' : 'Completed'}
+            {isUpcoming ? t('races.upcoming') : t('races.completed')}
           </div>
         </div>
 
@@ -53,7 +54,7 @@ const RaceCard: React.FC<RaceCardProps> = ({ race, onEdit, onDelete }) => {
           <div className={`flex items-center justify-center w-8 h-8 rounded-full mr-2 ${getTerrainColor(race.terrainType)}`}>
             {terrainIcons[race.terrainType]}
           </div>
-          <span className="text-sm font-medium capitalize">{race.terrainType}</span>
+          <span className="text-sm font-medium capitalize">{t(`races.terrainTypes.${race.terrainType}`)}</span>
           <span className="mx-2 text-gray-300">•</span>
           <span className="text-sm">{race.distance} km</span>
         </div>
@@ -62,7 +63,7 @@ const RaceCard: React.FC<RaceCardProps> = ({ race, onEdit, onDelete }) => {
           <div className="flex items-center">
             <Clock size={16} className="mr-2 text-gray-500" />
             <span className="text-sm">
-              {race.time ? formatTime(race.time) : isUpcoming ? 'TBD' : 'Not recorded'}
+              {race.time ? formatTime(race.time) : isUpcoming ? t('races.tbd') : t('races.notRecorded')}
             </span>
           </div>
           
@@ -70,7 +71,7 @@ const RaceCard: React.FC<RaceCardProps> = ({ race, onEdit, onDelete }) => {
             <div className="flex items-center">
               <TrendingUp size={16} className="mr-2 text-gray-500" />
               <span className="text-sm">
-                {race.elevationGain ? `${race.elevationGain}m` : 'No elevation data'}
+                {race.elevationGain ? `${race.elevationGain}m` : t('races.noElevationData')}
               </span>
             </div>
           )}
@@ -79,7 +80,7 @@ const RaceCard: React.FC<RaceCardProps> = ({ race, onEdit, onDelete }) => {
             <div className="flex items-center">
               <Medal size={16} className="mr-2 text-yellow-500" />
               <span className="text-sm">
-                {`#${race.position.general} overall / #${race.position.ageGroup} AG`}
+                {t('races.position', { general: race.position.general, ageGroup: race.position.ageGroup })}
               </span>
             </div>
           )}
@@ -104,7 +105,7 @@ const RaceCard: React.FC<RaceCardProps> = ({ race, onEdit, onDelete }) => {
             icon={<Edit size={16} />}
             onClick={() => onEdit(race.id)}
           >
-            Edit
+            {t('common.edit')}
           </Button>
           <Button 
             variant="ghost" 
@@ -113,7 +114,7 @@ const RaceCard: React.FC<RaceCardProps> = ({ race, onEdit, onDelete }) => {
             className="text-red-500 hover:bg-red-50"
             onClick={() => onDelete(race.id)}
           >
-            Delete
+            {t('common.delete')}
           </Button>
         </div>
       </div>

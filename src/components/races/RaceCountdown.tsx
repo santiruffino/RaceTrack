@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Timer } from 'lucide-react';
 import Card from '../ui/Card';
+import { useTranslation } from 'react-i18next';
 
 interface Race {
   id: string;
@@ -14,35 +15,35 @@ interface RaceCountdownProps {
 }
 
 const RaceCountdown: React.FC<RaceCountdownProps> = ({ races }) => {
+  const { t } = useTranslation();
   const [timeLeft, setTimeLeft] = useState<{
     days: number;
     hours: number;
     minutes: number;
     seconds: number;
-  }>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  } | null>(null);
 
+  // Find the next upcoming race
   const nextRace = races
-    .filter(race => !race.isCompleted)
+    .filter(race => {
+      const raceDate = new Date(race.date);
+      const now = new Date();
+      return !race.isCompleted && raceDate > now;
+    })
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())[0];
 
   useEffect(() => {
     if (!nextRace) return;
 
     const calculateTimeLeft = () => {
-      // Create date objects with explicit timezone handling
       const raceDate = new Date(nextRace.date);
       const now = new Date();
-      
-      // Get the timezone offset in minutes
       const timezoneOffset = raceDate.getTimezoneOffset();
-      
-      // Adjust the race date by adding the timezone offset
       const adjustedRaceDate = new Date(raceDate.getTime() + (timezoneOffset * 60000));
-      
       const difference = adjustedRaceDate.getTime() - now.getTime();
       
       if (difference <= 0) {
-        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+        return null;
       }
 
       return {
@@ -53,16 +54,29 @@ const RaceCountdown: React.FC<RaceCountdownProps> = ({ races }) => {
       };
     };
 
-    setTimeLeft(calculateTimeLeft());
+    const timeRemaining = calculateTimeLeft();
+    if (!timeRemaining) {
+      setTimeLeft(null);
+      return;
+    }
+
+    setTimeLeft(timeRemaining);
 
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
+      const updatedTime = calculateTimeLeft();
+      if (!updatedTime) {
+        clearInterval(timer);
+        setTimeLeft(null);
+        return;
+      }
+      setTimeLeft(updatedTime);
     }, 1000);
 
     return () => clearInterval(timer);
   }, [nextRace]);
 
-  if (!nextRace) {
+  // Return null if there's no upcoming race or if the time left is null
+  if (!nextRace || !timeLeft) {
     return null;
   }
 
@@ -71,7 +85,7 @@ const RaceCountdown: React.FC<RaceCountdownProps> = ({ races }) => {
       <div className="p-6">
         <div className="flex items-center mb-4">
           <Timer size={24} className="mr-2" />
-          <h3 className="text-lg font-semibold">Next Race Countdown</h3>
+          <h3 className="text-lg font-semibold">{t('dashboard.countdown.title')}</h3>
         </div>
         
         <div className="mb-2">
@@ -88,19 +102,19 @@ const RaceCountdown: React.FC<RaceCountdownProps> = ({ races }) => {
         <div className="grid grid-cols-4 gap-4 mt-4">
           <div className="text-center bg-white/10 rounded-lg p-3 backdrop-blur-sm">
             <div className="text-3xl font-bold">{timeLeft.days}</div>
-            <div className="text-sm opacity-90 mt-1">Days</div>
+            <div className="text-sm opacity-90 mt-1">{t('dashboard.countdown.days')}</div>
           </div>
           <div className="text-center bg-white/10 rounded-lg p-3 backdrop-blur-sm">
             <div className="text-3xl font-bold">{timeLeft.hours}</div>
-            <div className="text-sm opacity-90 mt-1">Hours</div>
+            <div className="text-sm opacity-90 mt-1">{t('dashboard.countdown.hours')}</div>
           </div>
           <div className="text-center bg-white/10 rounded-lg p-3 backdrop-blur-sm">
             <div className="text-3xl font-bold">{timeLeft.minutes}</div>
-            <div className="text-sm opacity-90 mt-1">Minutes</div>
+            <div className="text-sm opacity-90 mt-1">{t('dashboard.countdown.minutes')}</div>
           </div>
           <div className="text-center bg-white/10 rounded-lg p-3 backdrop-blur-sm">
             <div className="text-3xl font-bold">{timeLeft.seconds}</div>
-            <div className="text-sm opacity-90 mt-1">Seconds</div>
+            <div className="text-sm opacity-90 mt-1">{t('dashboard.countdown.seconds')}</div>
           </div>
         </div>
       </div>
@@ -108,4 +122,4 @@ const RaceCountdown: React.FC<RaceCountdownProps> = ({ races }) => {
   );
 };
 
-export default RaceCountdown; 
+export default RaceCountdown;

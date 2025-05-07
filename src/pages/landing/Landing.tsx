@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
-  Timer, 
   Medal, 
   Mountain, 
   TrendingUp, 
@@ -16,6 +16,7 @@ import useAuthStore from '../../store/authStore';
 const Landing: React.FC = () => {
   const { isAuthenticated } = useAuthStore();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -43,7 +44,7 @@ const Landing: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              Track Your Races, Celebrate Your Progress
+              {t('landing.hero.title')}
             </motion.h1>
             <motion.p 
               className="mt-6 text-lg text-white text-opacity-90"
@@ -51,8 +52,7 @@ const Landing: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              Log your races, monitor progress, and plan future events all in one place.
-              Perfect for runners of all levels.
+              {t('landing.hero.subtitle')}
             </motion.p>
             <motion.div 
               className="mt-8"
@@ -66,7 +66,7 @@ const Landing: React.FC = () => {
                 className="bg-purple-600 text-white hover:bg-purple-700"
                 onClick={() => navigate('/login')}
               >
-                Get Started Now
+                {t('landing.hero.cta')}
               </Button>
             </motion.div>
           </div>
@@ -77,9 +77,9 @@ const Landing: React.FC = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900">Features designed for runners</h2>
+            <h2 className="text-3xl font-bold text-gray-900">{t('landing.features.title')}</h2>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              Everything you need to track your running journey and plan for future success.
+              {t('landing.features.subtitle')}
             </p>
           </div>
           
@@ -96,8 +96,8 @@ const Landing: React.FC = () => {
                 <div className={`p-3 rounded-full w-12 h-12 flex items-center justify-center ${feature.bgColor} mb-5`}>
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{t(`landing.features.${feature.key}.title`)}</h3>
+                <p className="text-gray-600">{t(`landing.features.${feature.key}.description`)}</p>
               </motion.div>
             ))}
           </div>
@@ -118,7 +118,7 @@ const Landing: React.FC = () => {
                 viewport={{ once: true }}
               >
                 <p className="text-4xl font-bold text-purple-600">{stat.value}</p>
-                <p className="mt-2 text-lg text-gray-600">{stat.label}</p>
+                <p className="mt-2 text-lg text-gray-600">{t(`landing.stats.${stat.key}`)}</p>
               </motion.div>
             ))}
           </div>
@@ -128,16 +128,16 @@ const Landing: React.FC = () => {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to start tracking your races?</h2>
+          <h2 className="text-3xl font-bold mb-6">{t('landing.cta.title')}</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-white text-opacity-90">
-            Join thousands of runners who are tracking their progress and achieving their goals.
+            {t('landing.cta.subtitle')}
           </p>
           <Button 
             size="lg" 
             className="bg-purple-600 text-white hover:bg-purple-700"
             onClick={() => navigate('/signup')}
           >
-            Get Started Now
+            {t('landing.cta.button')}
           </Button>
         </div>
       </section>
@@ -148,38 +148,32 @@ const Landing: React.FC = () => {
 // Feature data
 const features = [
   {
-    title: 'Race Logging',
-    description: 'Record all your races with detailed information about distance, time, and terrain.',
+    key: 'raceLogging',
     icon: <Medal size={24} className="text-white" />,
     bgColor: 'bg-yellow-500'
   },
   {
-    title: 'Track Elevation',
-    description: 'For trail races, track elevation gain to measure the difficulty of your routes.',
+    key: 'trackElevation',
     icon: <Mountain size={24} className="text-white" />,
     bgColor: 'bg-green-500'
   },
   {
-    title: 'Performance Analytics',
-    description: 'View your progress over time with detailed performance metrics.',
+    key: 'performanceAnalytics',
     icon: <TrendingUp size={24} className="text-white" />,
     bgColor: 'bg-blue-500'
   },
   {
-    title: 'Future Race Planning',
-    description: 'Plan and prepare for upcoming races with our event scheduling tools.',
+    key: 'futureRacePlanning',
     icon: <Calendar size={24} className="text-white" />,
     bgColor: 'bg-purple-500'
   },
   {
-    title: 'Progress Dashboard',
-    description: 'Visualize your running journey with customizable dashboard widgets.',
+    key: 'progressDashboard',
     icon: <BarChart3 size={24} className="text-white" />,
     bgColor: 'bg-indigo-500'
   },
   {
-    title: 'Time Tracking',
-    description: 'Record your race times and calculate your pace for different distances.',
+    key: 'timeTracking',
     icon: <Clock size={24} className="text-white" />,
     bgColor: 'bg-red-500'
   }
@@ -187,10 +181,10 @@ const features = [
 
 // Stats data
 const stats = [
-  { value: '10K+', label: 'Active Users' },
-  { value: '50K+', label: 'Races Tracked' },
-  { value: '500K+', label: 'Kilometers Run' },
-  { value: '99%', label: 'Happy Runners' }
+  { value: '10K+', key: 'activeUsers' },
+  { value: '50K+', key: 'racesTracked' },
+  { value: '500K+', key: 'kilometersRun' },
+  { value: '99%', key: 'happyRunners' }
 ];
 
 export default Landing;

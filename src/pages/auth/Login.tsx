@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Timer, Mail, Lock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import useAuthStore from '../../store/authStore';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
@@ -12,6 +13,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const { login, error, isLoading } = useAuthStore();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,12 +38,12 @@ const Login: React.FC = () => {
             <Timer size={48} className="text-purple-600" />
           </div>
           <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-            Sign in to RaceTrack
+            {t('auth.login')}
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            Or{' '}
+            {t('auth.noAccount')}{' '}
             <Link to="/signup" className="font-medium text-purple-600 hover:text-purple-500">
-              create a new account
+              {t('auth.signup')}
             </Link>
           </p>
         </div>
@@ -55,23 +57,23 @@ const Login: React.FC = () => {
 
           <form onSubmit={handleSubmit}>
             <Input
-              label="Email address"
+              label={t('auth.email')}
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
               icon={<Mail size={18} className="text-gray-400" />}
-              placeholder="Enter your email"
+              placeholder={t('auth.email')}
             />
 
             <Input
-              label="Password"
+              label={t('auth.password')}
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               icon={<Lock size={18} className="text-gray-400" />}
-              placeholder="Enter your password"
+              placeholder={t('auth.password')}
             />
 
             <div className="flex items-center justify-between mb-6">
@@ -83,19 +85,19 @@ const Login: React.FC = () => {
                   className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
                 />
                 <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                  Remember me
+                  {t('auth.rememberMe')}
                 </label>
               </div>
 
               <div className="text-sm">
                 <a href="#" className="font-medium text-purple-600 hover:text-purple-500">
-                  Forgot your password?
+                  {t('auth.forgotPassword')}
                 </a>
               </div>
             </div>
 
             <Button type="submit" fullWidth loading={isLoading}>
-              Sign in
+              {t('auth.login')}
             </Button>
           </form>
 
@@ -105,7 +107,9 @@ const Login: React.FC = () => {
                 <div className="w-full border-t border-gray-300"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Or continue with</span>
+                <span className="px-2 bg-white text-gray-500">
+                  {t('auth.orContinueWith')}
+                </span>
               </div>
             </div>
 
@@ -115,7 +119,7 @@ const Login: React.FC = () => {
                 fullWidth
                 onClick={() => navigate('/')}
               >
-                Back to Home
+                {t('footer.home')}
               </Button>
             </div>
           </div>

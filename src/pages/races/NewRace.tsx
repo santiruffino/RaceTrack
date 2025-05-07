@@ -6,11 +6,13 @@ import Navbar from '../../components/layout/Navbar';
 import Footer from '../../components/layout/Footer';
 import RaceForm from '../../components/races/RaceForm';
 import { Race } from '../../types';
+import { useTranslation } from 'react-i18next';
 
 const NewRace: React.FC = () => {
   const { user } = useAuthStore();
   const { addRace } = useRaceStore();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   
   const handleSubmit = (data: Partial<Race>) => {
     if (!user) {
@@ -45,9 +47,9 @@ const NewRace: React.FC = () => {
       
       <main className="flex-grow container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">Add New Race</h1>
+          <h1 className="text-2xl font-bold text-gray-900">{t("races.addNewRace")}</h1>
           <p className="text-gray-600 mt-1">
-            Record a past race or plan a future event
+            {t("races.newRaceDescription")}
           </p>
         </div>
         
