@@ -8,8 +8,19 @@
     "forgotPassword": "¿Olvidaste tu contraseña?",
     "noAccount": "¿No tienes una cuenta?",
     "hasAccount": "¿Ya tienes una cuenta?",
-    "rememberMe": "Remember me",
-    "orContinueWith": "Or continue with"
+    "rememberMe": "Recordarme",
+    "createAccount": "Crea tu cuenta",
+    "fullName": "Nombre completo",
+    "enterName": "Ingresa tu nombre",
+    "enterEmail": "Ingresa tu correo electrónico",
+    "createPassword": "Crea una contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "confirmYourPassword": "Confirma tu contraseña",
+    "passwordsDoNotMatch": "Las contraseñas no coinciden",
+    "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+    "signInToExisting": "inicia sesión en tu cuenta existente",
+    "or": "O",
+    "backToHome": "Volver al inicio"
   },
   "landing": {
     "hero": {
@@ -95,7 +106,12 @@
       "days": "Días",
       "hours": "Horas",
       "minutes": "Minutos",
-      "seconds": "Segundos"
+      "seconds": "Segundos",
+      "dateFormat": {
+        "year": "numérico",
+        "month": "largo",
+        "day": "numérico"
+      }
     },
     "stats": {
       "timeStats": {

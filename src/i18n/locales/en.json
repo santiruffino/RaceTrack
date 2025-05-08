@@ -9,7 +9,18 @@
     "noAccount": "Don't have an account?",
     "hasAccount": "Already have an account?",
     "rememberMe": "Remember me",
-    "orContinueWith": "Or continue with"
+    "createAccount": "Create your account",
+    "fullName": "Full name",
+    "enterName": "Enter your name",
+    "enterEmail": "Enter your email",
+    "createPassword": "Create a password",
+    "confirmPassword": "Confirm password",
+    "confirmYourPassword": "Confirm your password",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "signInToExisting": "sign in to your existing account",
+    "or": "Or",
+    "backToHome": "Back to Home"
   },
   "landing": {
     "hero": {
@@ -95,7 +106,12 @@
       "days": "Days",
       "hours": "Hours",
       "minutes": "Minutes",
-      "seconds": "Seconds"
+      "seconds": "Seconds",
+      "dateFormat": {
+        "year": "numeric",
+        "month": "long",
+        "day": "numeric"
+      }
     },
     "stats": {
       "timeStats": {

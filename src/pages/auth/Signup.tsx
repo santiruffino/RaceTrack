@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Timer, Mail, Lock, User } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import useAuthStore from '../../store/authStore';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
@@ -15,14 +16,15 @@ const Signup: React.FC = () => {
   const [passwordError, setPasswordError] = useState('');
   const { signup, error, isLoading } = useAuthStore();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const validatePasswords = (): boolean => {
     if (password !== confirmPassword) {
-      setPasswordError('Passwords do not match');
+      setPasswordError(t('auth.passwordsDoNotMatch'));
       return false;
     }
     if (password.length < 6) {
-      setPasswordError('Password must be at least 6 characters');
+      setPasswordError(t('auth.passwordMinLength'));
       return false;
     }
     setPasswordError('');
@@ -57,12 +59,12 @@ const Signup: React.FC = () => {
             <Timer size={48} className="text-purple-600" />
           </div>
           <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-            Create your account
+            {t('auth.createAccount')}
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            Or{' '}
+            {t('auth.or')}{' '}
             <Link to="/login" className="font-medium text-purple-600 hover:text-purple-500">
-              sign in to your existing account
+              {t('auth.signInToExisting')}
             </Link>
           </p>
         </div>
@@ -76,48 +78,48 @@ const Signup: React.FC = () => {
 
           <form onSubmit={handleSubmit}>
             <Input
-              label="Full name"
+              label={t('auth.fullName')}
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
               icon={<User size={18} className="text-gray-400" />}
-              placeholder="Enter your name"
+              placeholder={t('auth.enterName')}
             />
 
             <Input
-              label="Email address"
+              label={t('auth.email')}
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
               icon={<Mail size={18} className="text-gray-400" />}
-              placeholder="Enter your email"
+              placeholder={t('auth.enterEmail')}
             />
 
             <Input
-              label="Password"
+              label={t('auth.password')}
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               icon={<Lock size={18} className="text-gray-400" />}
-              placeholder="Create a password"
+              placeholder={t('auth.createPassword')}
             />
 
             <Input
-              label="Confirm password"
+              label={t('auth.confirmPassword')}
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
               icon={<Lock size={18} className="text-gray-400" />}
-              placeholder="Confirm your password"
+              placeholder={t('auth.confirmYourPassword')}
               error={passwordError}
             />
 
             <div className="mt-6">
               <Button type="submit" fullWidth loading={isLoading}>
-                Create account
+                {t('auth.signup')}
               </Button>
             </div>
           </form>
@@ -128,7 +130,7 @@ const Signup: React.FC = () => {
                 <div className="w-full border-t border-gray-300"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Or</span>
+                <span className="px-2 bg-white text-gray-500">{t('auth.or')}</span>
               </div>
             </div>
 
@@ -138,7 +140,7 @@ const Signup: React.FC = () => {
                 fullWidth
                 onClick={() => navigate('/')}
               >
-                Back to Home
+                {t('auth.backToHome')}
               </Button>
             </div>
           </div>
