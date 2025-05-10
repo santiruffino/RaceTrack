@@ -42,7 +42,7 @@ const RaceNameAutocomplete: React.FC<RaceNameAutocompleteProps> = ({
   return (
     <div className="relative mb-4">
       <label className="block text-sm font-medium text-gray-700 mb-1">
-        Race Name
+        {t("races.raceName")}
       </label>
       <div className="relative">
         <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />

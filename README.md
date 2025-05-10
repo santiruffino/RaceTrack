@@ -31,7 +31,7 @@ Before you begin, ensure you have the following installed:
 
 1. **Clone the repository**
    ```bash
-   git clone [repository-url]
+   git clone https://github.com/santiruffino/RaceTrack
    cd race-tracker
    ```
 
@@ -50,7 +50,7 @@ Before you begin, ensure you have the following installed:
    ```
 
 4. **Open your browser**
-   Navigate to `http://localhost:3000` to see the application running.
+   Navigate to `http://localhost:5173` to see the application running.
 
 ## Project Structure
 

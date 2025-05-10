@@ -152,7 +152,7 @@
     "cookiePolicy": "Política de Cookies",
     "copyright": "© {{year}} RaceTrack. Todos los derechos reservados.",
     "madeWith": "Hecho con",
-    "forRunners": "para corredores de todo el mundo"
+    "forRunners": "para corredores por corredores"
   },
   "common": {
     "edit": "Editar",
@@ -178,6 +178,7 @@
     "editRace": "Editar Carrera",
     "addNewRace": "Agregar Nueva Carrera",
     "newRaceDescription": "Guardar una carrera pasada o planifica una carrera a futuro",
+    "raceName": "Nombre de la carrera",
     "enterRaceName": "Ingresar nombre de la carrera",
     "loadingSuggestions": "Cargando Sugerencias...",
     "noSuggestionsFound": "No hay sugerencias",

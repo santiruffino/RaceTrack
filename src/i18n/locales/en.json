@@ -152,7 +152,7 @@
     "cookiePolicy": "Cookie Policy",
     "copyright": "© {{year}} RaceTrack. All rights reserved.",
     "madeWith": "Made with",
-    "forRunners": "for runners everywhere"
+    "forRunners": "for runners from runners"
   },
   "common": {
     "edit": "Edit",
@@ -178,6 +178,7 @@
     "editRace": "Edit Race",
     "addNewRace": "Add New Race",
     "newRaceDescription": "Record a past race or plan a future event",
+    "raceName": "Race Name",
     "enterRaceName": "Enter Race Name",
     "loadingSuggestions": "Loading Suggestions",
     "noSuggestionsFound": "No suggestions found",

@@ -12,6 +12,8 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // Add this to the existing useState imports at the top
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const { t } = useTranslation();
 
   const handleLogout = () => {
@@ -65,12 +67,18 @@ const Navbar: React.FC = () => {
                     )}
                   </Link>
                 ))}
-                <div className="relative ml-4 group">
-                  <button className="flex items-center text-sm font-medium text-gray-700 hover:text-purple-600 focus:outline-none">
+                {/* Replace the profile menu div with this updated version */}
+                <div className="relative ml-4">
+                  <button 
+                    className="flex items-center text-sm font-medium text-gray-700 hover:text-purple-600 focus:outline-none"
+                    onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+                  >
                     <User size={20} className="mr-1" />
                     <span>{user?.name}</span>
                   </button>
-                  <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden group-hover:block">
+                  <div className={`absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 ${
+                    isProfileMenuOpen ? 'block' : 'hidden'
+                  }`}>
                     <button
                       onClick={handleLogout}
                       className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"

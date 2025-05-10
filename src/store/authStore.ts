@@ -7,6 +7,8 @@ const useAuthStore = create<AuthState & {
   signup: (email: string, name: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   checkAuth: () => Promise<void>;
+  forgotPassword: (email: string) => Promise<void>;
+  resetPassword: (password: string) => Promise<void>;
 }>((set) => ({
   user: null,
   isAuthenticated: false,
@@ -101,6 +103,40 @@ const useAuthStore = create<AuthState & {
       set({ user: null, isAuthenticated: false });
     } finally {
       set({ isLoading: false });
+    }
+  },
+  
+  forgotPassword: async (email: string) => {
+    set({ isLoading: true, error: null });
+    
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/reset-password`,
+      });
+  
+      if (error) throw error;
+      
+      set({ isLoading: false });
+      return;
+    } catch (error) {
+      set({ error: (error as Error).message, isLoading: false });
+    }
+  },
+  
+  resetPassword: async (password: string) => {
+    set({ isLoading: true, error: null });
+    
+    try {
+      const { error } = await supabase.auth.updateUser({
+        password: password
+      });
+  
+      if (error) throw error;
+      
+      set({ isLoading: false });
+      return;
+    } catch (error) {
+      set({ error: (error as Error).message, isLoading: false });
     }
   },
 }));
