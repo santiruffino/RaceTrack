@@ -170,10 +170,12 @@ const Dashboard: React.FC = () => {
               </h3>
 
               <div className="space-y-3">
-                {Object.entries(metrics.terrainDistribution).map(([terrain, count]) => (
+                {Object.entries(metrics.terrainDistribution)
+                  .filter(([, count]) => count > 0)
+                  .map(([terrain, count]) => (
                   <div key={terrain}>
                     <div className="flex justify-between items-center">
-                      <p className="text-sm font-medium text-gray-700 capitalize">{terrain}</p>
+                      <p className="text-sm font-medium text-gray-700 capitalize">{t(`dashboard.stats.terrainDistribution.types.${terrain}`)}</p>
                       <p className="text-sm text-gray-500">{count} {t("dashboard.stats.terrainDistribution.races")}</p>
                     </div>
                     <div className="mt-1 w-full bg-gray-200 rounded-full h-2 overflow-hidden">

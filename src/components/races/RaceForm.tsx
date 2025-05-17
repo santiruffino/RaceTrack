@@ -30,7 +30,7 @@ const RaceForm: React.FC<RaceFormProps> = ({
   const { register, handleSubmit, control, watch, setValue, formState: { errors } } = useForm<Partial<Race>>({
     defaultValues: {
       name: initialData?.name || '',
-      date: initialData?.date || new Date().toISOString().split('T')[0],
+      date: initialData?.date ? new Date(initialData.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
       distance: initialData?.distance || undefined,
       terrainType: initialData?.terrainType || 'road',
       time: initialData?.time || undefined,
@@ -46,7 +46,10 @@ const RaceForm: React.FC<RaceFormProps> = ({
   const watchIsCompleted = watch('isCompleted');
   
   // Helper to convert time string to seconds
-  const timeToSeconds = (timeString: string): number => {
+  const timeToSeconds = (timeString: string | number): number => {
+    if (typeof timeString === 'number') {
+      return timeString;
+    }
     const [hours, minutes, seconds] = timeString.split(':').map(Number);
     return hours * 3600 + minutes * 60 + seconds;
   };
@@ -185,8 +188,11 @@ const RaceForm: React.FC<RaceFormProps> = ({
                     placeholder="00:00:00"
                     error={errors.time?.message}
                     icon={<Clock size={18} className="text-gray-400" />}
-                    defaultValue={initialData?.time ? secondsToTime(initialData.time) : ''}
-                    {...register('time', { required: false })}
+                    defaultValue={initialData?.time}
+                    {...register('time', { 
+                      required: false,
+                      setValueAs: (value) => value ? timeToSeconds(value) : undefined
+                    })}
                   />
                 </div>
                 

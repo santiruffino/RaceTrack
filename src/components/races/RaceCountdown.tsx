@@ -15,7 +15,7 @@ interface RaceCountdownProps {
 }
 
 const RaceCountdown: React.FC<RaceCountdownProps> = ({ races }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [timeLeft, setTimeLeft] = useState<{
     days: number;
     hours: number;
@@ -91,7 +91,7 @@ const RaceCountdown: React.FC<RaceCountdownProps> = ({ races }) => {
         <div className="mb-2">
           <h4 className="text-xl font-bold">{nextRace.name}</h4>
           <p className="text-sm opacity-90">
-            {new Date(nextRace.date).toLocaleDateString(undefined, {
+            {new Date(nextRace.date).toLocaleDateString(i18n.language, {
               year: 'numeric',
               month: 'long',
               day: 'numeric',

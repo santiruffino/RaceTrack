@@ -126,7 +126,12 @@
       },
       "terrainDistribution": {
         "title": "Terrain Distribution",
-        "races": "races"
+        "races": "races",
+        "types": {
+          "road": "Road",
+          "trail": "Trail",
+          "cross": "Cross"
+        }
       }
     },
     "recentRaces": {

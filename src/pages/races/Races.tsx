@@ -9,8 +9,10 @@ import Footer from '../../components/layout/Footer';
 import Button from '../../components/ui/Button';
 import RaceCard from '../../components/races/RaceCard';
 import { TerrainType } from '../../types';
+import { useTranslation } from 'react-i18next';
 
 const Races: React.FC = () => {
+  const { t } = useTranslation();
   const { user } = useAuthStore();
   const { races, loadRaces, deleteRace } = useRaceStore();
   const navigate = useNavigate();
@@ -30,7 +32,7 @@ const Races: React.FC = () => {
   };
   
   const handleDelete = (id: string) => {
-    if (window.confirm('Are you sure you want to delete this race?')) {
+    if (window.confirm(t('races.deleteConfirmation'))) {
       deleteRace(id);
     }
   };
@@ -56,12 +58,12 @@ const Races: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">
-              {showOnlyCompleted ? 'Completed Races' : 'Upcoming Races'}
+              {showOnlyCompleted ? t('races.completedRaces') : t('races.upcomingRaces')}
             </h1>
             <p className="text-gray-600 mt-1">
               {showOnlyCompleted 
-                ? 'View and manage your race history' 
-                : 'Plan and prepare for your upcoming events'}
+                ? t('races.completedRacesDescription')
+                : t('races.upcomingRacesDescription')}
             </p>
           </div>
           
@@ -71,7 +73,7 @@ const Races: React.FC = () => {
               icon={<Plus size={16} />}
               onClick={handleAddNew}
             >
-              Add New Race
+              {t('races.addNewRace')}
             </Button>
           </div>
         </div>
@@ -83,7 +85,7 @@ const Races: React.FC = () => {
               <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search races..."
+                placeholder={t('races.searchPlaceholder')}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -97,10 +99,10 @@ const Races: React.FC = () => {
                 value={terrainFilter}
                 onChange={(e) => setTerrainFilter(e.target.value as TerrainType | 'all')}
               >
-                <option value="all">All Terrains</option>
-                <option value="road">Road</option>
-                <option value="trail">Trail</option>
-                <option value="cross">Cross</option>
+                <option value="all">{t('races.allTerrains')}</option>
+                <option value="road">{t('races.terrainTypes.road')}</option>
+                <option value="trail">{t('races.terrainTypes.trail')}</option>
+                <option value="cross">{t('races.terrainTypes.cross')}</option>
               </select>
             </div>
             
@@ -113,7 +115,7 @@ const Races: React.FC = () => {
                 }`}
                 onClick={() => setShowOnlyCompleted(true)}
               >
-                Completed
+                {t('races.completed')}
               </button>
               <button
                 className={`px-4 py-2 rounded-md font-medium text-sm transition-colors ${
@@ -123,7 +125,7 @@ const Races: React.FC = () => {
                 }`}
                 onClick={() => setShowOnlyCompleted(false)}
               >
-                Upcoming
+                {t('races.upcoming')}
               </button>
             </div>
           </div>
@@ -167,18 +169,18 @@ const Races: React.FC = () => {
                   d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
                 />
               </svg>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No races found</h3>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">{t('races.noRacesFound')}</h3>
               <p className="text-gray-600 mb-6">
                 {showOnlyCompleted
-                  ? "You haven't recorded any completed races yet."
-                  : "You don't have any upcoming races planned."}
+                  ? t('races.noCompletedRaces')
+                  : t('races.noUpcomingRaces')}
               </p>
               <Button
                 variant="primary"
                 icon={<Plus size={16} />}
                 onClick={handleAddNew}
               >
-                {showOnlyCompleted ? 'Add your first race' : 'Plan a race'}
+                {showOnlyCompleted ? t('races.addFirstRace') : t('races.planRace')}
               </Button>
             </motion.div>
           </div>

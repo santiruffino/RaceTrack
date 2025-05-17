@@ -126,3 +126,40 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
    - Deploy!
 
 Note: If you're using Vite (which is common for modern React apps), the build output will be in the `dist` directory. If you're using Create React App, it will be in the `build` directory. 
+
+## To-Do List
+
+### High Priority
+- [ ] Implement race statistics dashboard with charts and graphs
+- [ ] Create race sharing functionality
+- [ ] Add race photo upload and gallery feature
+
+### Medium Priority
+- [ ] Implement race search and filtering
+- [ ] Add race categories and tags
+- [ ] Create race calendar view
+- [ ] Add race weather forecast integration
+- [ ] Implement race route visualization
+
+### Low Priority
+- [ ] Add social features (comments, likes)
+- [ ] Create race preparation checklist
+- [ ] Add race gear tracking
+- [ ] Implement race training plan integration
+- [ ] Add race nutrition tracking
+
+### Technical Debt
+- [ ] Update browserslist database
+- [ ] Add comprehensive error handling
+- [ ] Implement proper loading states
+- [ ] Add unit and integration tests
+- [ ] Optimize performance and bundle size
+
+## Recent Updates
+- Added race editing functionality
+- Implemented race form component
+- Created race card component
+- Added dashboard layout
+- Implemented basic routing structure
+- Set up Vite development environment
+- Implemented user authentication and profile management

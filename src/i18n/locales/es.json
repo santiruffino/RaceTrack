@@ -126,7 +126,12 @@
       },
       "terrainDistribution": {
         "title": "Distribución de Terreno",
-        "races": "carreras"
+        "races": "carreras",
+        "types": {
+          "road": "Calle",
+          "trail": "Trail",
+          "cross": "Campo traviesa"
+        }
       }
     },
     "recentRaces": {
@@ -207,6 +212,21 @@
       "terrainTypeRequired": "El tipo de terreno es requerido",
       "elevationPositive": "La elevación debe ser positiva",
       "positionPositive": "La posición debe ser positiva"
-    }
+    },
+    "completedRaces": "Carreras Completadas",
+    "upcomingRaces": "Próximas Carreras",
+    "completedRacesDescription": "Ver y gestionar tu historial de carreras",
+    "upcomingRacesDescription": "Planifica y prepárate para tus próximos eventos",
+    "addNewRace": "Añadir Nueva Carrera",
+    "searchPlaceholder": "Buscar carreras...",
+    "allTerrains": "Todos los Terrenos",
+    "completed": "Completada",
+    "upcoming": "Próximamente",
+    "noRacesFound": "No se encontraron carreras",
+    "noCompletedRaces": "Aún no has registrado ninguna carrera completada",
+    "noUpcomingRaces": "No tienes carreras programadas",
+    "addFirstRace": "Añade tu primera carrera",
+    "planRace": "Planifica una carrera",
+    "deleteConfirmation": "¿Estás seguro de que quieres eliminar esta carrera?"
   }
 }

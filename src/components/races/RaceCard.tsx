@@ -19,9 +19,9 @@ const terrainIcons: Record<TerrainType, React.ReactNode> = {
 };
 
 const RaceCard: React.FC<RaceCardProps> = ({ race, onEdit, onDelete }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isUpcoming = !race.isCompleted;
-  const formattedDate = new Date(race.date).toLocaleDateString('en-US', {
+  const formattedDate = new Date(race.date).toLocaleDateString(i18n.language, {
     year: 'numeric',
     month: 'short',
     day: 'numeric'
