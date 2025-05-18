@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Clock, Mountain, Award, CalendarDays, MapPinned } from 'lucide-react';
-import { Race, TerrainType } from '../../types';
+import { Race, TerrainType, RaceType } from '../../types';
 import Button from '../ui/Button';
 import Input from '../ui/Input';
 import Select from '../ui/Select';
@@ -32,6 +32,7 @@ const RaceForm: React.FC<RaceFormProps> = ({
       name: initialData?.name || '',
       date: initialData?.date ? new Date(initialData.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
       distance: initialData?.distance || undefined,
+      raceType: initialData?.raceType || 'running',
       terrainType: initialData?.terrainType || 'road',
       time: initialData?.time || undefined,
       elevationGain: initialData?.elevationGain || undefined,
@@ -42,8 +43,18 @@ const RaceForm: React.FC<RaceFormProps> = ({
     }
   });
   
+  const watchRaceType = watch('raceType') as RaceType;
   const watchTerrainType = watch('terrainType') as TerrainType;
   const watchIsCompleted = watch('isCompleted');
+  
+  // Reset terrain type when race type changes
+  React.useEffect(() => {
+    if (watchRaceType === 'running') {
+      setValue('terrainType', 'road');
+    } else {
+      setValue('terrainType', 'road');
+    }
+  }, [watchRaceType, setValue]);
   
   // Helper to convert time string to seconds
   const timeToSeconds = (timeString: string | number): number => {
@@ -77,6 +88,23 @@ const RaceForm: React.FC<RaceFormProps> = ({
     onSubmit(data);
   };
   
+  const getTerrainOptions = () => {
+    if (watchRaceType === 'running') {
+      return [
+        { value: 'road', label: t('races.terrainTypes.road') },
+        { value: 'trail', label: t('races.terrainTypes.trail') },
+        { value: 'cross', label: t('races.terrainTypes.cross') }
+      ];
+    } else {
+      return [
+        { value: 'road', label: t('races.terrainTypes.road') },
+        { value: 'mtb', label: t('races.terrainTypes.mtb') },
+        { value: 'gravel', label: t('races.terrainTypes.gravel') },
+        { value: 'track', label: t('races.terrainTypes.track') }
+      ];
+    }
+  };
+  
   return (
     <Card className="w-full max-w-2xl mx-auto">
       <div className="p-6">
@@ -98,6 +126,26 @@ const RaceForm: React.FC<RaceFormProps> = ({
                     onChange={field.onChange}
                     onSelect={(name) => setValue('name', name)}
                     error={errors.name?.message}
+                  />
+                )}
+              />
+            </div>
+            
+            {/* Race Type */}
+            <div>
+              <Controller
+                control={control}
+                name="raceType"
+                rules={{ required: t('races.errors.raceTypeRequired') }}
+                render={({ field }) => (
+                  <Select
+                    label={t('races.raceType')}
+                    options={[
+                      { value: 'running', label: t('races.raceTypes.running') },
+                      { value: 'cycling', label: t('races.raceTypes.cycling') }
+                    ]}
+                    error={errors.raceType?.message}
+                    {...field}
                   />
                 )}
               />
@@ -140,11 +188,7 @@ const RaceForm: React.FC<RaceFormProps> = ({
                 render={({ field }) => (
                   <Select
                     label={t('races.terrainType')}
-                    options={[
-                      { value: 'road', label: t('races.terrainTypes.road') },
-                      { value: 'trail', label: t('races.terrainTypes.trail') },
-                      { value: 'cross', label: t('races.terrainTypes.cross') }
-                    ]}
+                    options={getTerrainOptions()}
                     error={errors.terrainType?.message}
                     {...field}
                   />

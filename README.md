@@ -1,15 +1,16 @@
 # Race Tracker Application
 
-A modern web application for tracking and managing running races. Built with React, TypeScript, and Tailwind CSS, this application helps runners keep track of their races, monitor their progress, and stay motivated with fun statistics and countdowns.
+A modern web application for tracking and managing running and cycling races. Built with React, TypeScript, and Tailwind CSS, this application helps athletes keep track of their races, monitor their progress, and stay motivated with fun statistics and countdowns.
 
 ## Features
 
-- 🏃‍♂️ Track upcoming and completed races
+- 🏃‍♂️ Track upcoming and completed races (running and cycling)
 - 📊 View detailed race statistics and metrics
 - ⏰ Countdown timer for upcoming races
 - 📈 Monitor progress with fun facts and comparisons
 - 🎯 Track personal records and achievements
 - 📱 Responsive design for all devices
+- 🚴‍♂️ Support for multiple race types and terrains
 
 ## Tech Stack
 
@@ -75,17 +76,23 @@ The main dashboard displays:
 - Upcoming race countdown
 - Fun facts and comparisons
 - Recent and upcoming races
+- Race type distribution (running vs cycling)
 
 ### Race Management
-- Add new races
+- Add new races (running or cycling)
 - Track race details (distance, time, elevation)
 - Monitor progress and achievements
+- Support for different terrain types:
+  - Running: Road, Trail, Cross Country
+  - Cycling: Road, Mountain Bike (MTB), Gravel, Track
 
 ### Metrics
 - Total distance covered
 - Elevation gained
 - Race completion statistics
 - Personal records
+- Race type distribution
+- Terrain type distribution
 
 ## Contributing
 
@@ -156,6 +163,11 @@ Note: If you're using Vite (which is common for modern React apps), the build ou
 - [ ] Optimize performance and bundle size
 
 ## Recent Updates
+- Added support for bike races with new terrain types (MTB, Gravel, Track)
+- Implemented race type selection (running/cycling)
+- Updated race form with dynamic terrain options based on race type
+- Enhanced race cards with race type indicators
+- Updated metrics to track race type distribution
 - Added race editing functionality
 - Implemented race form component
 - Created race card component

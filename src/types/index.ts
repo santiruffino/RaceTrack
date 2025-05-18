@@ -1,4 +1,6 @@
-export type TerrainType = 'road' | 'trail' | 'cross';
+export type TerrainType = 'road' | 'trail' | 'cross' | 'mtb' | 'gravel' | 'track';
+
+export type RaceType = 'running' | 'cycling';
 
 export type Position = {
   general: number;
@@ -12,6 +14,7 @@ export interface Race {
   name: string;
   date: string;
   distance: number; // in kilometers
+  raceType: RaceType;
   terrainType: TerrainType;
   time?: number; // in seconds
   elevationGain?: number; // in meters
@@ -52,6 +55,13 @@ export interface Metrics {
     road: number;
     trail: number;
     cross: number;
+    mtb: number;
+    gravel: number;
+    track: number;
+  };
+  raceTypeDistribution: {
+    running: number;
+    cycling: number;
   };
   fastest: {
     race: Race | null;

@@ -227,6 +227,29 @@
     "noUpcomingRaces": "No tienes carreras programadas",
     "addFirstRace": "Añade tu primera carrera",
     "planRace": "Planifica una carrera",
-    "deleteConfirmation": "¿Estás seguro de que quieres eliminar esta carrera?"
+    "deleteConfirmation": "¿Estás seguro de que quieres eliminar esta carrera?",
+    "raceType": "Tipo de Carrera",
+    "raceTypes": {
+      "running": "Carrera a Pie",
+      "cycling": "Ciclismo"
+    },
+    "terrainTypes": {
+      "road": "Carretera",
+      "trail": "Montaña",
+      "cross": "Campo Traviesa",
+      "mtb": "Montaña (MTB)",
+      "gravel": "Gravel",
+      "track": "Pista"
+    },
+    "errors": {
+      "nameRequired": "El nombre de la carrera es requerido",
+      "dateRequired": "La fecha es requerida",
+      "distanceRequired": "La distancia es requerida",
+      "distancePositive": "La distancia debe ser positiva",
+      "raceTypeRequired": "El tipo de carrera es requerido",
+      "terrainTypeRequired": "El tipo de terreno es requerido",
+      "elevationPositive": "La elevación debe ser positiva",
+      "positionPositive": "La posición debe ser positiva"
+    }
   }
 }

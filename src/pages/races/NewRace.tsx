@@ -24,6 +24,7 @@ const NewRace: React.FC = () => {
       name: data.name || '',
       date: data.date || new Date().toISOString(),
       distance: data.distance || 0,
+      raceType: data.raceType || 'running',
       terrainType: data.terrainType || 'road',
       time: data.time,
       elevationGain: data.elevationGain,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, MapPin, TrendingUp, Medal, Edit, Trash2 } from 'lucide-react';
+import { Clock, MapPin, TrendingUp, Medal, Edit, Trash2, Bike, Running } from 'lucide-react';
 import { Race, TerrainType } from '../../types';
 import Card from '../ui/Card';
 import { formatTime, getTerrainColor } from '../../lib/utils';
@@ -15,7 +15,15 @@ interface RaceCardProps {
 const terrainIcons: Record<TerrainType, React.ReactNode> = {
   road: <MapPin size={16} />,
   trail: <TrendingUp size={16} />,
-  cross: <MapPin size={16} />
+  cross: <MapPin size={16} />,
+  mtb: <Bike size={16} />,
+  gravel: <Bike size={16} />,
+  track: <Bike size={16} />
+};
+
+const raceTypeIcons: Record<Race['raceType'], React.ReactNode> = {
+  running: <Running size={16} />,
+  cycling: <Bike size={16} />
 };
 
 const RaceCard: React.FC<RaceCardProps> = ({ race, onEdit, onDelete }) => {
@@ -57,6 +65,11 @@ const RaceCard: React.FC<RaceCardProps> = ({ race, onEdit, onDelete }) => {
           <span className="text-sm font-medium capitalize">{t(`races.terrainTypes.${race.terrainType}`)}</span>
           <span className="mx-2 text-gray-300">•</span>
           <span className="text-sm">{race.distance} km</span>
+          <span className="mx-2 text-gray-300">•</span>
+          <div className="flex items-center">
+            {raceTypeIcons[race.raceType]}
+            <span className="ml-1 text-sm capitalize">{t(`races.raceTypes.${race.raceType}`)}</span>
+          </div>
         </div>
 
         <div className="mt-4 grid grid-cols-2 gap-4">

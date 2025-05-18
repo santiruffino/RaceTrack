@@ -175,10 +175,18 @@
     "noElevationData": "No elevation data",
     "position": "#{{general}} overall / #{{ageGroup}} AG",
     "personalBest": "Personal Best!",
+    "raceType": "Race Type",
+    "raceTypes": {
+      "running": "Running",
+      "cycling": "Cycling"
+    },
     "terrainTypes": {
       "road": "Road",
       "trail": "Trail",
-      "cross": "Cross Country"
+      "cross": "Cross Country",
+      "mtb": "Mountain Bike",
+      "gravel": "Gravel",
+      "track": "Track"
     },
     "editRace": "Edit Race",
     "addNewRace": "Add New Race",
@@ -209,6 +217,7 @@
       "dateRequired": "Date is required",
       "distanceRequired": "Distance is required",
       "distancePositive": "Distance must be positive",
+      "raceTypeRequired": "Race type is required",
       "terrainTypeRequired": "Terrain type is required",
       "elevationPositive": "Elevation must be positive",
       "positionPositive": "Position must be positive"

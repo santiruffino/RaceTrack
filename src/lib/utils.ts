@@ -56,6 +56,14 @@ export const calculateMetrics = (races: Race[]): Metrics => {
     road: 0,
     trail: 0,
     cross: 0,
+    mtb: 0,
+    gravel: 0,
+    track: 0,
+  };
+
+  const raceTypeDistribution = {
+    running: 0,
+    cycling: 0,
   };
   
   completedRaces.forEach(race => {
@@ -78,7 +86,8 @@ export const calculateMetrics = (races: Race[]): Metrics => {
       }
     }
     
-    terrainDistribution[race.terrainType as TerrainType] += 1;
+    terrainDistribution[race.terrainType] += 1;
+    raceTypeDistribution[race.raceType] += 1;
   });
   
   return {
@@ -89,6 +98,7 @@ export const calculateMetrics = (races: Race[]): Metrics => {
     totalTime,
     totalElevation,
     terrainDistribution,
+    raceTypeDistribution,
     fastest: {
       race: fastestRace,
       pace: fastestPace,
@@ -109,6 +119,12 @@ export const getTerrainColor = (terrain: TerrainType): string => {
       return 'bg-green-500';
     case 'cross':
       return 'bg-amber-500';
+    case 'mtb':
+      return 'bg-red-500';
+    case 'gravel':
+      return 'bg-orange-500';
+    case 'track':
+      return 'bg-purple-500';
     default:
       return 'bg-gray-500';
   }
@@ -123,6 +139,12 @@ export const getTerrainIcon = (terrain: TerrainType): string => {
       return 'mountain';
     case 'cross':
       return 'map';
+    case 'mtb':
+      return 'bike';
+    case 'gravel':
+      return 'bike';
+    case 'track':
+      return 'bike';
     default:
       return 'map-pin';
   }

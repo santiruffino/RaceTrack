@@ -8,6 +8,7 @@
       - `name` (text)
       - `date` (timestamp with time zone)
       - `distance` (numeric)
+      - `race_type` (text)
       - `terrain_type` (text)
       - `time` (integer)
       - `elevation_gain` (integer)
@@ -34,6 +35,7 @@ CREATE TABLE IF NOT EXISTS races (
   name text NOT NULL,
   date timestamptz NOT NULL,
   distance numeric NOT NULL,
+  race_type text NOT NULL,
   terrain_type text NOT NULL,
   time integer,
   elevation_gain integer,
@@ -45,7 +47,11 @@ CREATE TABLE IF NOT EXISTS races (
   location text,
   created_at timestamptz DEFAULT now(),
   
-  CONSTRAINT valid_terrain_type CHECK (terrain_type IN ('road', 'trail', 'cross'))
+  CONSTRAINT valid_race_type CHECK (race_type IN ('running', 'cycling')),
+  CONSTRAINT valid_terrain_type CHECK (
+    (race_type = 'running' AND terrain_type IN ('road', 'trail', 'cross')) OR
+    (race_type = 'cycling' AND terrain_type IN ('road', 'mtb', 'gravel', 'track'))
+  )
 );
 
 ALTER TABLE races ENABLE ROW LEVEL SECURITY;
